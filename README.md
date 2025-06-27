@@ -1,3 +1,18 @@
+<div align="center">
+      <img src="logo.png" alt="rawind" height="250">
+</div>
+
+
+<div align="center">
+  <h1>Rawind</h1>
+  <h2>A Rackety Window-Manager.</h2>
+</div>
+
+
+> [!NOTE]  
+> In transistion from / a hard-fork of the great Rwind. Below this point, is the old readme.
+
+
 # RWind - The Racket Window Manager
 
 An extensible window manager written in the [Racket programming language](http://www.racket-lang.org), meant to be highly customizable.
