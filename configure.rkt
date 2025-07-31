@@ -60,17 +60,17 @@ You probably need to run this command with 'sudo'
 (define (config-config)
   (copy-file/print
    (build-path src-dir "config-simple.rkt")
-   (find-user-config-file rwind-dir-name rwind-user-config-file-name)))
+   (find-user-config-file rawind-dir-name rawind-user-config-file-name)))
 
 ;; Installs file for lightdm/gdm style login screens
 (define (session-config)
   (copy-file/print
-   (build-path src-dir "applications-rwind.desktop")
-   "/usr/share/applications/rwind.desktop")
+   (build-path src-dir "applications-rawind.desktop")
+   "/usr/share/applications/rawind.desktop")
   
   (copy-file/print
-   (build-path src-dir "xsessions-rwind.desktop")
-   "/usr/share/xsessions/rwind.desktop")
+   (build-path src-dir "xsessions-rawind.desktop")
+   "/usr/share/xsessions/rawind.desktop")
   
   (define start-files
     (filter (λ(f) (and (file-exists? (build-path src-dir f))
@@ -82,13 +82,13 @@ You probably need to run this command with 'sudo'
   
   (copy-file/print
    (build-path src-dir (list-ref start-files (sub1 start-index)))
-   "/usr/local/bin/rwind.start"))
+   "/usr/local/bin/rawind.start"))
 
 ;; Install files for use with xinit/startx
 (define (xinit-config)
   (copy-file/print
-   (build-path src-dir ".xinitrc-rwind")
-   (build-path (getenv "HOME") ".xinitrc-rwind")))
+   (build-path src-dir ".xinitrc-rawind")
+   (build-path (getenv "HOME") ".xinitrc-rawind")))
 
 (define (need-sudo/exit arg)
   (displayln "Need sudo rights to continue. Please type the following:")
@@ -98,13 +98,13 @@ You probably need to run this command with 'sudo'
           arg)
   (exit 0))
 
-(define (install-rwind-launcher)
-  (define tmp-dest "/tmp/rwind")
+(define (install-rawind-launcher)
+  (define tmp-dest "/tmp/rawind")
   (printf "Creating a launcher in ~a\n" tmp-dest)
-  (make-racket-program-launcher "main.rkt" "rwind" tmp-dest)
+  (make-racket-program-launcher "main.rkt" "rawind" tmp-dest)
   
-  (define dest "/usr/local/bin/rwind")
-  (printf "Installing a launcher for RWind to ~a\n" dest)
+  (define dest "/usr/local/bin/rawind")
+  (printf "Installing a launcher for Rawind to ~a\n" dest)
   (cond
     [(memq 'write (file-or-directory-permissions (path-only dest)))
      (copy-file/print tmp-dest dest)]
@@ -115,10 +115,10 @@ You probably need to run this command with 'sudo'
   (cond
     [(equal? (current-command-line-arguments)
              #("launcher"))
-     (install-rwind-launcher)]
+     (install-rawind-launcher)]
     [(equal? (current-command-line-arguments)
              #("session"))
-     #;(install-rwind-launcher) ; won't work because will run racket as sudo
+     #;(install-rawind-launcher) ; won't work because will run racket as sudo
      ; needs sudo
      (session-config)]
     [else

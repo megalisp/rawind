@@ -1,7 +1,7 @@
 #lang racket/base
 
-(require rwind/base
-         rwind/doc-string
+(require rawind/base
+         rawind/doc-string
          racket/class)
 
 #| Policies

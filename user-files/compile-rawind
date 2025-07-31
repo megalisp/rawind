@@ -15,16 +15,16 @@ function raco_clean {
     # may output some "file or directory not found" error messages
 }
 
-raco_dir rwind_dir "rwind"
+raco_dir rawind_dir "rawind"
 raco_dir x11_dir "x11"
 #exit
-raco_clean "$rwind_dir"
+raco_clean "$rawind_dir"
 raco_clean "$x11_dir"
 #exit
 
 if [ "$1" == "debug" ]; then
     export PLTCOMPILEDROOTS='compiled/debug:'
-    X11_RACKET_DEBUG=1 raco setup x11 rwind
+    X11_RACKET_DEBUG=1 raco setup x11 rawind
 else
-    raco setup x11 rwind
+    raco setup x11 rawind
 fi

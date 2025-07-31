@@ -11,8 +11,8 @@
 
 (provide recompile)
 
-(define the-collection-str  "rwind")
-(define the-file-str        "rwind")
+(define the-collection-str  "rawind")
+(define the-file-str        "rawind")
 (define the-procedure-sym   'main)
 
 (define the-collection-file-sym

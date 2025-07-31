@@ -2,16 +2,16 @@
 
 ;;; User configuration file
 
-(require rwind/base
-         rwind/keymap
-         rwind/window
-         rwind/util
-         rwind/user
-         rwind/launcher-base
-         rwind/workspace
-         rwind/policy/base
-         rwind/policy/simple
-         rwind/policy/tiling
+(require rawind/base
+         rawind/keymap
+         rawind/window
+         rawind/util
+         rawind/user
+         rawind/launcher-base
+         rawind/workspace
+         rawind/policy/base
+         rawind/policy/simple
+         rawind/policy/tiling
          racket/class)
 
 ; Set the number of workspaces
@@ -27,15 +27,15 @@
 (add-bindings 
  global-keymap
  ; Open xterm with Alt/Meta-Control-t
- "M-C-t" (L* (rwind-system "xterm"))
+ "M-C-t" (L* (rawind-system "xterm"))
  ; Open xclock
- "M-C-c" (L* (rwind-system "xclock -digital -update 1"))
+ "M-C-c" (L* (rawind-system "xclock -digital -update 1"))
  ; Open the application launcher. Consider also 'dmenu' or 'gmrun'.
  "M-F2"  (L* (open-launcher))
  ; Open the config file for editing, with "open" on mac or "xdg-open" or "mimeopen" on Linux
  "M-F11" (L* (open-user-config-file))
- ; Open the client of rwind for console interaction
- "M-F12" (L* (rwind-system "xterm -g 80x24+400+0 -T 'RWind Client' -e 'racket -l rwind/client'"))
+ ; Open the client of rawind for console interaction
+ "M-F12" (L* (rawind-system "xterm -g 80x24+400+0 -T 'Rawind Client' -e 'racket -l rawind/client'"))
  ; Close window gracefully if possible, otherwise kill the client
  "M-F4"  (L* (delete-window (input-focus)))
  ; Give keyboard focus to the next/previous window
@@ -71,19 +71,19 @@
 
 (add-bindings 
  root-keymap 
- ; Quit RWind
+ ; Quit Rawind
  "Super-S-Escape" (L* (dprintf "Now exiting.\n")
-                      (exit-rwind? #t))
- ; Restart RWind
+                      (exit-rawind? #t))
+ ; Restart Rawind
  ; (e.g., if the config file has changed)
  "Super-C-Escape" (L* (dprintf "Now exiting and restarting.\n")
-                      (restart-rwind? #t)
-                      (exit-rwind? #t))
- ; Recompile and Restart RWind
- ; (e.g., if rwind's code has changed)
- "Super-C-S-Escape" (L* (when (recompile-rwind)
+                      (restart-rawind? #t)
+                      (exit-rawind? #t))
+ ; Recompile and Restart Rawind
+ ; (e.g., if rawind's code has changed)
+ "Super-C-S-Escape" (L* (when (recompile-rawind)
                           (dprintf "Restarting...\n")
-                          (restart-rwind? #t)
-                          (exit-rwind? #t)))
+                          (restart-rawind? #t)
+                          (exit-rawind? #t)))
  )
  

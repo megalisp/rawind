@@ -3,10 +3,10 @@
 ;; Trying to make the server not use threads
 ;; (not currently used)
 
-(require rwind/base
-         rwind/util
-         rwind/window
-         rwind/keymap
+(require rawind/base
+         rawind/util
+         rawind/window
+         rawind/keymap
          racket/tcp
          )
 
@@ -15,7 +15,7 @@
 
 (define (make-server-listener)
   (dprint-wait "Opening listener")
-  (define listener (tcp-listen rwind-tcp-port))
+  (define listener (tcp-listen rawind-tcp-port))
   (dprint-ok)
   listener)
 
@@ -50,7 +50,7 @@
          #t]))
 
 #;(module+ main
-  (rwind-debug #t)
+  (rawind-debug #t)
   (define listener (make-server-listener))
   (define clients '())
   (dynamic-wind
@@ -90,7 +90,7 @@
 
 ;; With threads
 (module+ main
-  (rwind-debug #t)
+  (rawind-debug #t)
   (define listener (make-server-listener))
   (define (make-client-thread in out)
     (thread

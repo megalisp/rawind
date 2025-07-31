@@ -11,20 +11,20 @@
       [(new-val) (set! var new-val)])))
 
 (define* current-display  (make-fun-box #f))
-(define* rwind-debug      (make-fun-box #f))
-(define* exit-rwind?      (make-fun-box #f))
-(define* restart-rwind?   (make-fun-box #f))
+(define* rawind-debug      (make-fun-box #f))
+(define* exit-rawind?      (make-fun-box #f))
+(define* restart-rawind?   (make-fun-box #f))
 
-(define* rwind-app-name               "RWind")
-(define* rwind-version                '(0 1))
-(define* rwind-app-description        "Window manager in the Racket programming language")
-(define* rwind-dir-name               "rwind")
-(define* rwind-user-config-file-name  "config.rkt")
-(define* rwind-env-config-var         "RWIND_CONFIG_FILE")
-(define* rwind-website                "http://github.com/Metaxal/rwind")
-(define* rwind-tcp-port               54321)
-(define* rwind-log-file
-  (build-path (find-system-path 'home-dir) "rwind.log"))
+(define* rawind-app-name               "Rawind")
+(define* rawind-version                '(0 1))
+(define* rawind-app-description        "Window manager in the Racket programming language")
+(define* rawind-dir-name               "rawind")
+(define* rawind-user-config-file-name  "config.rkt")
+(define* rawind-env-config-var         "RAWIND_CONFIG_FILE")
+(define* rawind-website                "http://github.com/megalisp/rawind")
+(define* rawind-tcp-port               54321)
+(define* rawind-log-file
+  (build-path (find-system-path 'home-dir) "rawind.log"))
 
 (define* user-files-dir "user-files")
 

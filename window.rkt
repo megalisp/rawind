@@ -1,11 +1,11 @@
 #lang racket/base
 
-(require rwind/base
-         rwind/doc-string
-         rwind/util
-         rwind/display
-         rwind/policy/base
-         rwind/color
+(require rawind/base
+         rawind/doc-string
+         rawind/util
+         rawind/display
+         rawind/policy/base
+         rawind/color
          x11/x11
          x11/xinerama
          racket/contract
@@ -343,7 +343,7 @@
 ;; Does not seem to work properly... 
 ;; TODO: Look at other window managers to see how they do it.
 ;; - does not delete all windows that could be destroyed
-;; - when calling it on a window created with `create-simple-window', RWind crashes (or just halts?).
+;; - when calling it on a window created with `create-simple-window', Rawind crashes (or just halts?).
 (define*/contract (delete-window window)
   (window? . -> . any)
   "Tries to gently close the window and client if possible, otherwise kills it."
@@ -639,7 +639,7 @@
   i.e., split the screen in different monitors.
   This could even be a usefull feature (to develop further and expand?)
 - each monitor may display a different workspace (like xmonad)
-- These should be done as extensions to RWind, not in the core
+- These should be done as extensions to Rawind, not in the core
 - use xinerama?
 - Resources:
   http://awesome.naquadah.org/wiki/Using_Multiple_Screens

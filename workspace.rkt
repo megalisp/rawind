@@ -1,13 +1,13 @@
 #lang racket/base
 
-(require rwind/base
-         rwind/display
-         rwind/doc-string
-         rwind/util
-         rwind/keymap
-         rwind/window
-         rwind/color
-         rwind/policy/base
+(require rawind/base
+         rawind/display
+         rawind/doc-string
+         rawind/util
+         rawind/keymap
+         rawind/window
+         rawind/color
+         rawind/policy/base
          x11/x11
          racket/list
          racket/contract
@@ -559,7 +559,7 @@ if the latter is not #f."
 (define*/contract (exit-workspace wk)
   (workspace? . -> . any)
   "Reparents all sub-windows of the specified workspace to the true root."
-  ; This is necessary to avoid killing the windows when RWind quits.
+  ; This is necessary to avoid killing the windows when Rawind quits.
   (define root (true-root-window))
   (for ([w (workspace-windows wk)])
     (reparent-window w root)))

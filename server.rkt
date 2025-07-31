@@ -16,23 +16,23 @@
 |#
 
 (require x11/x11
-         rwind/base
-         rwind/util
-         rwind/window
-         rwind/keymap
-         rwind/doc-string
-         rwind/workspace
-         rwind/policy/base
+         rawind/base
+         rawind/util
+         rawind/window
+         rawind/keymap
+         rawind/doc-string
+         rawind/workspace
+         rawind/policy/base
          racket/tcp)
 
-(provide start-rwind-server)
+(provide start-rawind-server)
 
 (define-namespace-anchor server-namespace-anchor)
 (define server-namespace (namespace-anchor->namespace server-namespace-anchor))
 
-(define (start-rwind-server [continuous? #t])
+(define (start-rawind-server [continuous? #t])
   (dprint-wait "Opening listener")
-  (define listener (tcp-listen rwind-tcp-port 4 #t "127.0.0.1"))
+  (define listener (tcp-listen rawind-tcp-port 4 #t "127.0.0.1"))
   (dprint-ok)
 
   (dynamic-wind
@@ -98,7 +98,7 @@
   ;; Start the server
   (set! server-thread
     (parameterize ([debug-prefix "Srv: "])
-      (thread start-rwind-server)))
+      (thread start-rawind-server)))
   )
 
 (define* (exit-server)
@@ -109,11 +109,11 @@
   )
 
 (module+ main
-  (rwind-debug #t)
+  (rawind-debug #t)
   (current-display (XOpenDisplay #f))
   (dynamic-wind
    void
-   (λ()(start-rwind-server #f))
+   (λ()(start-rawind-server #f))
    (λ()
      (dprint-wait "Closing display")
      (XCloseDisplay (current-display))

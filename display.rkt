@@ -1,9 +1,9 @@
 #lang racket/base
 
-(require rwind/base
-         rwind/doc-string
-         rwind/util
-         rwind/policy/base
+(require rawind/base
+         rawind/doc-string
+         rawind/util
+         rawind/policy/base
          x11/x11
          racket/date
          racket/match
@@ -23,7 +23,7 @@
 
 
 (define* (init-debug)
-  (when (rwind-debug)
+  (when (rawind-debug)
     ;:::::::::::;
     ;:: Debug ::;
     ;:::::::::::;

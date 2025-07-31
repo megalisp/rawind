@@ -1,12 +1,12 @@
 #lang racket/base
 
-(require rwind/util
-         rwind/base
-         rwind/doc-string
-         rwind/keymap
-         rwind/window
-         rwind/workspace
-         rwind/policy/base
+(require rawind/util
+         rawind/base
+         rawind/doc-string
+         rawind/keymap
+         rawind/window
+         rawind/workspace
+         rawind/policy/base
          x11/x11
          ffi/unsafe/port
          racket/match
@@ -225,6 +225,6 @@
        #;(handle-evt (current-input-port)
                      (lambda (e)
                        (printf "INPUT ~a ~a\n" e (read-line e))))))
-    (unless (exit-rwind?)
+    (unless (exit-rawind?)
       (policy. after-event)
       (loop))))

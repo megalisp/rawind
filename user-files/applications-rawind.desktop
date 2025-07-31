@@ -1,10 +1,10 @@
 [Desktop Entry]
 Type=Application
 Encoding=UTF-8
-Name=RWind
-Exec=rwind.start
+Name=Rawind
+Exec=rawind.start
 NoDisplay=true
-X-GNOME-WMName=RWind
+X-GNOME-WMName=Rawind
 X-GNOME-Autostart-Phase=WindowManager
 X-GNOME-Provides=windowmanager
 X-GNOME-Autostart-Notify=false

@@ -3,7 +3,7 @@
 ; launcher.rkt
 ; Lehi Toskin
 
-(require rwind/launcher-base
+(require rawind/launcher-base
          racket/gui/base
          racket/class
          racket/system
@@ -120,7 +120,7 @@
 
 (define launcher-frame
   (new my-dialog%
-       [label "RWind Launcher"]
+       [label "Rawind Launcher"]
        [min-width 400]))
 
 (define launcher-tfield

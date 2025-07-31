@@ -3,25 +3,25 @@
 ;;; Author: Laurent Orseau <laurent orseau gmail com> -- 2012-11-09
 ;;; License: GPL (see gpl-3.0.txt)
 ;;; (in GPL because the readline lib is itself in GPL.
-;;; But since the rest of RWind does not depend on this client, it's no big deal.)
+;;; But since the rest of Rawind does not depend on this client, it's no big deal.)
 
 #| TODO
 - does not seem to detect that the server could not start?
 |#
 
 (require racket/tcp
-         rwind/base
-         rwind/util
+         rawind/base
+         rawind/util
          readline ; for more usable client. WARNING: requires the license to be GPL?
          ; or invoke it with 'racket -l readline client.rkt'
          ; Or I can release the client only under GPL?
          )
 
-(define client-prompt "rwind-client> ")
+(define client-prompt "rawind-client> ")
 (define client-result-format "-> [~a]\n")
 
 (print-wait "Trying to connect to server")
-(define-values (in out) (tcp-connect/enable-break "localhost" rwind-tcp-port))
+(define-values (in out) (tcp-connect/enable-break "localhost" rawind-tcp-port))
 (print-ok)
 
 (dynamic-wind
@@ -51,5 +51,5 @@
    (print-ok)))
 
 (module+ main
-  (rwind-debug #t)
+  (rawind-debug #t)
   )

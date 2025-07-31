@@ -13,7 +13,7 @@
 (module+ test
   (require rackunit))
 
-(define* (rwind-system . args)
+(define* (rawind-system . args)
   "Runs a command asynchronously."
   (system (string-append
            (string-join (map path-string->string args))
@@ -41,11 +41,11 @@
 (define* (open-file file)
   "Tries to open file with xdg-open or mimeopen on Linux, and open on MacOS X."
   (case (system-type)
-    [(macosx) (rwind-system "open" file)]
+    [(macosx) (rawind-system "open" file)]
     [(unix) (cond [(find-executable-path "xdg-open")
-                   => (λ(e)(rwind-system e file))]
+                   => (λ(e)(rawind-system e file))]
                   [(find-executable-path "mimeopen")
-                   => (λ(e)(rwind-system e "-L" "-n" file))]
+                   => (λ(e)(rawind-system e "-L" "-n" file))]
                   )]))
 
 ;=================;
@@ -69,20 +69,20 @@
 
 (define* (dprintf fmt . args)
   "Like printf but only in debugging mode."
-  (when (rwind-debug)
+  (when (rawind-debug)
     (display (debug-prefix))
     (apply printf fmt args)
     (flush-output)))
 
 (define* (dprint-wait . args)
   "Like print-wait, but for debugging."
-  (when (rwind-debug)
+  (when (rawind-debug)
     (display (debug-prefix))
     (apply print-wait args)))
 
 (define* (dprint-ok)
   "Like print-ok, but for debugging."
-  (when (rwind-debug)
+  (when (rawind-debug)
     ; The prefix is written because in multithread there is a risk
     ; to lose this info if other threads write newlines in the middle of a "wait... ok."
     (display (debug-prefix))
@@ -120,17 +120,17 @@ Prints (proc args ...) before calling it."
   (dprint-ok))
 
 
-;; Tries to recompile RWind.
-(define* (recompile-rwind)
-  (system "raco setup -D rwind")
+;; Tries to recompile Rawind.
+(define* (recompile-rawind)
+  (system "raco setup -D rawind")
   #;(recompile (λ(e)
                (dprintf "Error: Something went wrong during compilation:\n")
                (displayln (exn-message e))
                (dprintf "Aborting procedure.\n"))))
 
-;; Tries to recompile RWind.
+;; Tries to recompile Rawind.
 ;; Returns #t on success, #f otherwise (+ logging)
-#;(define* (recompile-rwind)
+#;(define* (recompile-rawind)
   (with-handlers ([exn:fail?
                      (λ(e)
                        (dprintf "Error: Something went wrong during compilation:\n")
@@ -138,7 +138,7 @@ Prints (proc args ...) before calling it."
                        (dprintf "Aborting procedure.\n")
                        #f)])
       #;(compile-collection "x11")
-      (compile-collection "rwind")
+      (compile-collection "rawind")
       #t))
 
 (define* (full-command-line-arguments)
@@ -148,8 +148,8 @@ Prints (proc args ...) before calling it."
   ;; GetCommandLineW() for Windows, and _NSGetArgc() and _NSGetArgv() for MacOS X.
   (string-split (file->string "/proc/self/cmdline") "\u0000"))
 
-(define* (start-rwind-process)
-  "Starts a new instance of the rwind process.
+(define* (start-rawind-process)
+  "Starts a new instance of the rawind process.
 Warning: This assumes the process is started in the same working directory as the parent process."
   (dprint-wait "Running child")
   (define full-cmd-line (full-command-line-arguments))

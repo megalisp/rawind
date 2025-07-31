@@ -1,10 +1,10 @@
 #lang racket/base
 
-(require rwind/policy/base
-         rwind/doc-string
-         rwind/util
-         rwind/window
-         rwind/workspace
+(require rawind/policy/base
+         rawind/doc-string
+         rawind/util
+         rawind/window
+         rawind/workspace
          racket/class
          racket/list
          racket/match

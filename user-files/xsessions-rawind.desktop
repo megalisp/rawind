@@ -1,7 +1,7 @@
 [Desktop Entry]
 Encoding=UTF-8
-Name=RWind
+Name=Rawind
 Comment=Window manager written in Racket
-Exec=rwind.start
+Exec=rawind.start
 Icon=
 Type=XSession

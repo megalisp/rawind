@@ -1,12 +1,12 @@
 #lang racket/base
 
 (require ;"base.rkt" "util.rkt" "window-util.rkt"
-         rwind/base
-         rwind/util
-         rwind/window
-         ;rwind/window-utils
-         rwind/doc-string
-         rwind/policy/base
+         rawind/base
+         rawind/util
+         rawind/window
+         ;rawind/window-utils
+         rawind/doc-string
+         rawind/policy/base
          x11/x11
          ;x11/keysym-util
          x11/keysymdef

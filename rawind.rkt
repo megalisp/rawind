@@ -20,7 +20,7 @@
 - non-ICCCM features: http://standards.freedesktop.org/wm-spec/1.4/ar01s02.html
 - Extended Window Manager Hints: http://standards.freedesktop.org/wm-spec/latest/
 - Window Managers: http://www.csl.mtu.edu/cs4760/www/Lectures/OlderLectures/HCIExamplesLectures/XWin/xWM.htm
-- wmctrl: a small software with which RWind should be made compliant
+- wmctrl: a small software with which Rawind should be made compliant
   http://en.wikipedia.org/wiki/Wmctrl
 - X Window Managers: http://en.wikipedia.org/wiki/X_window_manager
 - X11: http://www.freebsd.org/cgi/man.cgi?query=X&sektion=7&manpath=XFree86+4.7.0
@@ -32,16 +32,16 @@
          ;; Further requirement for the bug to appear: it must be started with xinit
          ;; see https://groups.google.com/forum/?fromgroups=#!topic/racket-users/jEXWq_24cOU
          ;; (is this still true today?)
-         rwind/base
-         rwind/color
-         rwind/display
-         rwind/events
-         rwind/keymap
-         rwind/server
-         rwind/user
-         rwind/util
-         rwind/window
-         rwind/workspace
+         rawind/base
+         rawind/color
+         rawind/display
+         rawind/events
+         rawind/keymap
+         rawind/server
+         rawind/user
+         rawind/util
+         rawind/window
+         rawind/workspace
          x11/x11
          ; WARNING: the x11.rkt lib still needs some work. Every function that one uses
          ; should be checked with the official documentation.
@@ -60,13 +60,13 @@
 ;=== Run ===;
 ;===========;
 (define (run)
-  (with-output-to-file rwind-log-file
+  (with-output-to-file rawind-log-file
     #:exists 'replace
     ; For logging purposes, also see racket's logging facility (search for "logging")
     (λ()
       (parameterize ([current-error-port (current-output-port)]
                      ;; Set the current directory to the user's dir
-                     [current-directory (find-user-config-dir rwind-dir-name)])
+                     [current-directory (find-user-config-dir rawind-dir-name)])
 
         ; Initializes thread support
         ; This must be the first X procedure to call
@@ -126,9 +126,9 @@
         
         ))); log to file
 
-  (dprintf "RWind terminated\n")
+  (dprintf "Rawind terminated\n")
   ; Make sure to exit the process, e.g., in case somethings hangs, like gui frames
-  (restart-rwind?))
+  (restart-rawind?))
 
 ;============;
 ;=== Main ===;
@@ -138,7 +138,7 @@
   ; TODO: Use the 'command-line' facility instead
 
   ;; take the config file from the environment
-  (let ([config-file (getenv rwind-env-config-var)])
+  (let ([config-file (getenv rawind-env-config-var)])
     (when (and config-file (file-exists? config-file))
       (cmd-line-config-file (path->complete-path config-file))))
 
@@ -147,8 +147,8 @@
       (match args
         [(list (or "--help" "-h"))
          (displayln "Usage:
-rwind [arguments] ...
-racket -t rwind.rkt [arguments] ...
+rawind [arguments] ...
+racket -t rawind.rkt [arguments] ...
 
 Arguments:
 -h, --help
@@ -156,7 +156,7 @@ Arguments:
 -c, --config config-file
     Uses config-file in place of the default user configuration file
 --debug
-    Prints RWind debugging information
+    Prints Rawind debugging information
 ")]
         [(list (or "--config" "-c") config-file arg-rest ...)
          (if (file-exists? config-file)
@@ -164,7 +164,7 @@ Arguments:
              (error "Configuration file does not exist:" config-file))
          (arg-loop arg-rest)]
         [(list "--debug" arg-rest ...)
-         (rwind-debug #t)
+         (rawind-debug #t)
          (arg-loop arg-rest)]
         [else
          (printf "Warning: Unused arguments ~a\n" args)])))

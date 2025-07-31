@@ -1,7 +1,7 @@
 #lang racket/base
 
-(require rwind/base
-         rwind/doc-string
+(require rawind/base
+         rawind/doc-string
          x11/x11
          racket/dict
          )
